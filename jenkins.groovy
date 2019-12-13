@@ -2,7 +2,6 @@ node {
     stage 'Clone the project'
     git 'https://github.com/arshadshah/demo.git'
 
-    dir('build-pipe') {
 
         stage("Tests and Deployment") {
             parallel 'Unit tests': {
@@ -14,5 +13,4 @@ node {
             stage("Staging") {
                 bat 'mvn spring-boot:run -Dserver.port=8989'
                 }
-        }
     }
