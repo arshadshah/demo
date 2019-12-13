@@ -7,12 +7,12 @@ node {
         stage("Tests and Deployment") {
             parallel 'Unit tests': {
                 stage("Runing unit tests") {
-                    bat " mvnw test"
+                    bat "mvn test"
                 }
             }
             }
             stage("Staging") {
-                bat ' mvnw spring-boot:run -Dserver.port=8989'
+                bat 'mvn spring-boot:run -Dserver.port=8989'
                 }
         }
     }
