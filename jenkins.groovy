@@ -2,7 +2,7 @@ node {
     stage 'Clone the project'
     git 'https://github.com/arshadshah/demo.git'
 
-    dir('spring-jenkins-pipeline') {
+    dir('build-pipe') {
 
         stage("Tests and Deployment") {
             parallel 'Unit tests': {
