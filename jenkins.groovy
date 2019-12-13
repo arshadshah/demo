@@ -11,9 +11,8 @@ node {
                 }
             }
             }
-
             stage("Staging") {
-                    sh './mvnw spring-boot:run -Dserver.port=8989 &'
+                    sh './mvnw spring-boot:run -Dserver.port=8989'
                 }
         }
     }
