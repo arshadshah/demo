@@ -1,16 +1,32 @@
-node {
-    stage 'Clone the project'
-    git 'https://github.com/arshadshah/demo.git'
+pipeline {
+    agent any
 
+    stages {
+        stage ('Compile Stage') {
 
-        stage("Tests and Deployment") {
-            parallel 'Unit tests': {
-                stage("Runing unit tests") {
-                    bat "mvn test"
+            steps {
+                withMaven(maven : 'maven_3_5_0') {
+                    sh 'mvn clean compile'
                 }
             }
-            }
-            stage("Staging") {
-                bat 'mvn spring-boot:run -Dserver.port=8989'
+        }
+
+        stage ('Testing Stage') {
+
+            steps {
+                withMaven(maven : 'maven_3_5_0') {
+                    sh 'mvn test'
                 }
+            }
+        }
+
+
+        stage ('Deployment Stage') {
+            steps {
+                withMaven(maven : 'maven_3_5_0') {
+                    sh 'mvn deploy'
+                }
+            }
+        }
     }
+}
