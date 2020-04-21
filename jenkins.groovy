@@ -15,5 +15,11 @@ pipeline {
                 bat 'mvn test'
             }
         }
+
+        stage('IT Stage') {
+            steps {
+                bat 'mvn test'
+            }
+        }
     }
 }
